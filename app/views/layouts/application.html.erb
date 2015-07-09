@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<title><%= @title %></title>
+		<%= stylesheet_link_tag "site", media: 'screen' %>
+		<%= stylesheet_link_tag "profile" %>
+		<%= javascript_include_tag "application" %>
+	</head>
+	<body>
+		<div id="whole_page">
+			<div id="header">
+				RailsSpace
+			</div>
+			<div id="nav">
+				<span style="float: right">
+					<% if logged_in? -%>
+						<%= nav_link "Hub", "index", "user" %>
+						<%= nav_link "Logout", "logout", "user" %>
+					<% else -%>
+						<%= nav_link "Register", "register", "user" %> |
+						<%= nav_link "Login", "login", "user" %>
+				    <% end -%>		
+				</span>
+				<%= nav_link "Home", "index", "site" %> |
+				<%= link_to_unless_current "About Us", :action => "about", :controller => "site" %> |
+				<%= link_to "Help", site_help_path %> |
+				<%= nav_link "Community", "index", "community" %>
+				<%= link_to "Register", user_register_path %>
+			</div>
+			<div id="content">
+				<% if flash[:notice] -%>
+					<div id="notice">
+						<%= flash[:notice] %> 
+					</div>
+				<% end %>
+				<%= yield %>
+				<br clear="all" />
+			</div>		
+		</div>
+		<% if ENV["RAILS_ENV"] == "development" %>
+			<div id="debug">
+
+				<a href="#" onclick="Element.toggle('params_debug_info');return false">params</a> |
+				<a href="#" onclick="Element.toggle('session_debug_info');return false">session</a>
+
+				<fieldset id="params_debug_info" class="debug_info" style="display:none">
+					<legend>params</legend>
+						<%= debug(params) %>
+				</fieldset>
+				<fieldset id="session_debug_info" class="debug_info" style="display:none">
+					<legend>session</legend>
+						<%= debug(session) %>
+				</fieldset>
+			</div>
+		<% end %>
+	</body>
+</html>
