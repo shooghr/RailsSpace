@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
 	has_one :spec
 	has_one :faq
-	acts_as_ferret :fields => [ :screen_name, :email ]
+	#acts_as_ferret :fields => [ :screen_name, :email ]
 
 	attr_accessor :remember_me, :current_password
 

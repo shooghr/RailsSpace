@@ -1,7 +1,7 @@
 class Spec < ActiveRecord::Base
 
 	belongs_to :user
-	acts_as_ferret
+	#acts_as_ferret
 
 	ALL_FIELDS = %w(first_name last_name occupation gender birthdate city state zip_code)
 
