@@ -8,8 +8,13 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'activerecord-session_store'
 gem 'faker'
 gem 'or_else'
+
+# Gem de Pesquisa Mas não Funcionaram
 gem 'ferret'
 gem 'acts_as_ferret', '>= 0.5'
+
+# Gem de pesquisa
+gem 'ransack'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
