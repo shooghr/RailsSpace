@@ -29,6 +29,29 @@ class Spec < ActiveRecord::Base
 		[city, state, zip_code].join(" ")
 	end
 
+	# Find by age, sex, location.
+	def self.find_by_asl(params)
+		where = []
+
+		# Set up the age restrictions as birthdate range limits in SQL.
+		unless params[:min_age].blank?
+			where << "ADDDATE(birthdate, INTERVAL :min_age YEAR) < CURDATE()"
+		end
+
+		unless params[:max_age].blank?
+			where << "ADDDATE(birthdate, INTERVAL :max_age+1 YEAR) > CURDATE()"
+		end
+
+		# Set up the gender restriction in SQL
+		where << "bender = :gender" unless params[:gender].blank?
+
+		if where.empty?
+			[]
+		else
+			Spec.where().order(:last_name, :first_name)
+		end
+	end
+
 	def age
 		return if birthdate.nil?
 		today = Date.today

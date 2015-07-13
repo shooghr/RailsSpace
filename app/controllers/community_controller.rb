@@ -20,6 +20,12 @@ class CommunityController < ApplicationController
   end
 
   def browse
+    @title = "Browse"
+    return if params[:commit].nil?
+    specs = Spec.find_by_asl(params)
+    @users = specs.collect{ |spec| spec.user }
+
+    @pages = specs
   end
 
   # @Nova Implementação do Método Search

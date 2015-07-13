@@ -38,19 +38,27 @@
 
 # Populando Tabel Faq
 # 
- user = User.all
- faq  = Faq.new
+# user = User.all
+# faq  = Faq.new
+#
+#user.each do |usuario|
+#	faq.bio       = Faker::Lorem.paragraph
+#	faq.skillz    = Faker::Lorem.paragraph
+#	faq.schools   = Faker::Lorem.paragraph
+#	faq.companies = Faker::Lorem.paragraph
+#	faq.music     = Faker::Lorem.sentence
+#	faq.movies    = Faker::Lorem.paragraph
+#	faq.television = Faker::Lorem.paragraph
+#	faq.magazines = Faker::Lorem.words
+#	faq.books     = Faker::Lorem.words
+#	#Faq.create(user_id: "#{usuario.id}", bio: "#{faq.bio}")
+#	Faq.create(user_id: "#{usuario.id}", bio: "#{faq.bio}", skillz: "#{faq.skillz}", schools: "#{faq.schools}", companies: "#{faq.companies}", music: "#{faq.music}", movies: "#{faq.movies}", television: "#{faq.television}", magazines: "#{faq.magazines}", books: "#{faq.books}")
+#end
 
-user.each do |usuario|
-	faq.bio       = Faker::Lorem.paragraph
-	faq.skillz    = Faker::Lorem.paragraph
-	faq.schools   = Faker::Lorem.paragraph
-	faq.companies = Faker::Lorem.paragraph
-	faq.music     = Faker::Lorem.sentence
-	faq.movies    = Faker::Lorem.paragraph
-	faq.television = Faker::Lorem.paragraph
-	faq.magazines = Faker::Lorem.words
-	faq.books     = Faker::Lorem.words
-	#Faq.create(user_id: "#{usuario.id}", bio: "#{faq.bio}")
-	Faq.create(user_id: "#{usuario.id}", bio: "#{faq.bio}", skillz: "#{faq.skillz}", schools: "#{faq.schools}", companies: "#{faq.companies}", music: "#{faq.music}", movies: "#{faq.movies}", television: "#{faq.television}", magazines: "#{faq.magazines}", books: "#{faq.books}")
+
+Spec.all.each do |spec|
+	puts spec.first_name
+	spec.gender = gets
+	puts "Pronto"
+	spec.save
 end
