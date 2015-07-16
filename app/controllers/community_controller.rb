@@ -2,11 +2,14 @@ class CommunityController < ApplicationController
 
   helper :profile
 
+  before_action :inicia_ransack_browse, only:[:index, :browse]
+
   
 
   def index
   	@title = "Community"
   	@letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
+
   	if params[:id]
   		@initial = params[:id]
   		specs = Spec.where("last_name LIKE ?", @initial+'%').order(:last_name, :first_name).paginate(page: params[:page], per_page: 10)
@@ -19,14 +22,29 @@ class CommunityController < ApplicationController
   	end
   end
 
+
   def browse
     @title = "Browse"
-    return if params[:commit].nil?
-    specs = Spec.find_by_asl(params)
-    @users = specs.collect{ |spec| spec.user }
+    
 
-    @pages = specs
+    if params[:q]
+      specs = @q.result(params[:q]).paginate(page: params[:page], per_page: 10)
+      @users = specs.collect { |spec| spec.user }
+      @pages = specs
+    end
+
   end
+
+#  @Antiga Implementação do Método browse ('gem ferret' e 'gem acts_as_ferret' não funcionaram)
+#
+#  def browse
+#    @title = "Browse"
+#    return if params[:commit].nil?
+#    specs = Spec.find_by_asl(params)
+#    @users = specs.collect{ |spec| spec.user }
+#
+#    @pages = specs
+#  end
 
   # @Nova Implementação do Método Search
   def search
@@ -68,5 +86,9 @@ class CommunityController < ApplicationController
 
 	def improviment_search
 	end
+
+  def inicia_ransack_browse
+      @q = Spec.ransack(params[:q])
+  end
 
 end

@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   get 'community/index'
 
-  get 'community/browse'
-
   get 'community/search'
 
   get 'faq/index'
@@ -53,7 +51,12 @@ Rails.application.routes.draw do
   match 'user/index', :to => 'user#index', :as => :hub, via:[:get, :post]
 
   match ':controller/:action/:id', via:[:get, :post]
+
   match '', :controller => 'site', :action => 'index', :id => nil, via:[:get, :post]
+
+
+      match 'browse' => 'community#browse', via:[:get, :post], as: :browse
+
 
   #ActionController::Routing::Routes.draw do |map|
     #map.connect 'profile/:screen_name', :controller => 'profile', :action => 'show'

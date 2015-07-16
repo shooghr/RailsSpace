@@ -57,8 +57,8 @@
 
 
 Spec.all.each do |spec|
-	puts spec.first_name
-	spec.gender = gets
-	puts "Pronto"
-	spec.save
+	
+spec.zip_code = Faker::Address.zip	
+spec.save
+	
 end

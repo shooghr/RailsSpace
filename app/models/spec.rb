@@ -48,7 +48,7 @@ class Spec < ActiveRecord::Base
 		if where.empty?
 			[]
 		else
-			Spec.where().order(:last_name, :first_name)
+			Spec.where().order(:last_name, :first_name).join(" AND ")
 		end
 	end
 

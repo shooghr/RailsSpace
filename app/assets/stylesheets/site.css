@@ -62,7 +62,7 @@ html fieldset {
 }
 legend {
 	color: white;
-	background: maroon;
+	background: DarkSlateGray;
 	padding: .4em 1em;
 }
 label {
