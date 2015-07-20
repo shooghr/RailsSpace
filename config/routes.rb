@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'avatar/index'
+
+  get 'avatar/upload'
+
+  get 'avatar/delete'
+
   get 'community/index'
 
   get 'community/search'
