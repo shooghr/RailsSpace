@@ -32,7 +32,8 @@ class CommunityController < ApplicationController
       @users = specs.collect { |spec| spec.user }
       @pages = specs
     end
-
+## sqlite> select birthdate, (strftime('%Y','now') - strftime('%Y',birthdate)) as idade  from specs 
+##                  where (strftime('%Y','now') - strftime('%Y',birthdate)) < 35 and (strftime('%Y','now') - strftime('%Y',birthdate)) > 30;
   end
 
 #  @Antiga Implementação do Método browse ('gem ferret' e 'gem acts_as_ferret' não funcionaram)

@@ -1,5 +1,7 @@
 class Spec < ActiveRecord::Base
 
+	attr_accessor :idade
+
 	belongs_to :user
 	#acts_as_ferret
 
@@ -27,6 +29,11 @@ class Spec < ActiveRecord::Base
 	# Return the sensibly formatted location string.
 	def location
 		[city, state, zip_code].join(" ")
+	end
+
+
+	ransacker :age do
+		Arel::Nodes::SqlLiteral.new("cast((strftime('%Y','now') - strftime('%Y', birthdate)) as char)")
 	end
 
 	# Find by age, sex, location.
