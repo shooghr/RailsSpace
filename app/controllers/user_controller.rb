@@ -4,7 +4,7 @@ class UserController < ApplicationController
 
   include ApplicationHelper
 
-  helper :profile
+  helper :profile, :avatar
 
   #layout "site"
 

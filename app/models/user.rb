@@ -86,6 +86,10 @@ class User < ActiveRecord::Base
 		spec.full_name.or_else(screen_name)
 	end
 
+	def avatar
+		Avatar.new(self)
+	end
+
 	private
 
 	def unique_identifier

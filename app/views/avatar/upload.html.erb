@@ -1,2 +1,21 @@
-<h1>Avatar#upload</h1>
-<p>Find me in app/views/avatar/upload.html.erb</p>
+<h2>Avatar</h2>
+
+<%= form_tag("upload", :multipart => true) do %>
+	<fieldset>
+		<legend><%= @title %></legend>
+
+		<% if @user.avatar.exists? %>
+			<div class="form_row">
+				<label for="current_avatar">Avatar:</label>
+				<%= avatar_tag(@user) %>
+			</div>
+			<div class="form_row">
+				<label for="new_avatar">New Avatar:</label>
+				<%= file_field "avatar", "image" %>
+			</div>
+
+			<%= submit_tag "Upload Avatar", :class => "submit" %>
+
+		<% end %>
+	</fieldset>
+<% end %>
