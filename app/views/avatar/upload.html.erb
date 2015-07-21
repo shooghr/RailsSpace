@@ -8,14 +8,17 @@
 			<div class="form_row">
 				<label for="current_avatar">Avatar:</label>
 				<%= avatar_tag(@user) %>
+				<%= link_to "Delete", { :action => "delete"}, :confirm => "Are you sure?" %>
 			</div>
-			<div class="form_row">
-				<label for="new_avatar">New Avatar:</label>
-				<%= file_field "avatar", "image" %>
-			</div>
-
-			<%= submit_tag "Upload Avatar", :class => "submit" %>
-
 		<% end %>
+
+		<div class="form_row">
+			<label for="new_avatar">New Avatar:</label>
+			<%= file_field "avatar", "image" %>
+		</div>
+
+		<%= submit_tag "Upload Avatar", :class => "submit" %>
+
+		
 	</fieldset>
 <% end %>

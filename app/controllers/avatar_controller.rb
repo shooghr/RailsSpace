@@ -8,8 +8,20 @@ class AvatarController < ApplicationController
   def upload
   	@title = "Upload Your Avatar"
   	@user = User.find(session[:user_id])
+  	if param_posted?(:avatar)
+  		image = params[:avatar][:image]
+  		@avatar = Avatar.new(@user, image)
+  		if @avatar.save
+  			flash[:notice] = "Your avatar has been upload."
+  			redirect_to hub_url
+  		end
+  	end
   end
 
   def delete
+  	user = User.find(session[:user_id])
+  	user.avatar.delete
+  	flash[:notice] = "Your avatar has been deleted."
+  	redirect_to hub_url
   end
 end
