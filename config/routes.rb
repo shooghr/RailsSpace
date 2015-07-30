@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'email/remind'
+  post 'email/remind'
+
   get 'community/index'
 
   get 'community/search'
