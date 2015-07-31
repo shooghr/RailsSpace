@@ -24,7 +24,7 @@ class EmailController < ApplicationController
   	if param_posted?(:message)
   		@message = Message.new(params[:message])
   		if @message.valid?
-	  		UserMailer.message_email(
+	  		UserMailer::message_email(
 	  			:user => user,
 	  			:recipient => recipient,
 	  			:message => @message,

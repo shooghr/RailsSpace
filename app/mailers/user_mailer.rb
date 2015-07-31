@@ -7,7 +7,11 @@ class UserMailer < ActionMailer::Base
   end
 
   def message_email(mail)
-  	@mail = mail
-  	mail(:to => mail[:recipient].email, :subject => mail[:message].subject, :body => mail)
+  	@user = mail[:user]
+  	@user_url = mail[:user_url]
+  	@message = mail[:message] 
+  	@reply_url = mail[:
+  		reply_url]
+  	mail(:to => mail[:recipient].email, :subject => mail[:message].subject, :body => mail[:message].body)
   end
 end
