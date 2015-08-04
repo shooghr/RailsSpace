@@ -30,7 +30,8 @@ class Avatar < ActiveRecord::Base
 	end
 
 	def thumbnail_url
-		"#{URL_STUB}/#{thumbnail_url}"
+		thumb = exists? ? thumbnail_name : "rails_thumbnail.png"
+		"#{URL_STUB}/#{thumb}"
 	end
 
 	def delete

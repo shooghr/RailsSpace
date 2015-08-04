@@ -24,4 +24,8 @@
 	<div id="bio">
 		<%= sanitize @faq.bio %>
 	</div>
+
+	<hr noshade />
+	Friends:
+	<%= render :partial => "friendship/friends" %>
 </div>

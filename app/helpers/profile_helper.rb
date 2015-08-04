@@ -5,7 +5,7 @@ module ProfileHelper
 	end
 
 	def hide_edit_links?
-		not @hide_edif_links.nil?
+		not @hide_edit_links.nil?
 	end
 
 end

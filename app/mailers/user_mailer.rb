@@ -7,11 +7,20 @@ class UserMailer < ActionMailer::Base
   end
 
   def message_email(mail)
-  	@user = mail[:user]
-  	@user_url = mail[:user_url]
-  	@message = mail[:message] 
-  	@reply_url = mail[:
-  		reply_url]
+  	@user      = mail[:user]
+  	@user_url  = mail[:user_url]
+  	@message   = mail[:message] 
+  	@reply_url = mail[:reply_url]
   	mail(:to => mail[:recipient].email, :subject => mail[:message].subject, :body => mail[:message].body)
   end
+
+  def friend_request(mail)
+    @user        = mail[:user]
+    @friend      = mail[:friend]
+    @user_url    = mail[:user_url] 
+    @accept_url  = mail[:accept_url]
+    @decline_url = mail[:decline_url]
+    mail(:to => mail[:friend].email, :subject => "New friend request at RailsSpace.com")
+  end
+
 end
