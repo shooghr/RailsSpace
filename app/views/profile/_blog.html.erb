@@ -1,0 +1,6 @@
+<div id="blog">
+	<p>
+		<%= pluralize(@blog.posts.count, "blog post") %>
+	</p>
+	<%= render :partial => "posts/post", :collection => @blog.posts %>
+</div>

@@ -1,12 +1,14 @@
 class PostsController < ApplicationController
   helper :profile
   before_filter :protect, :protect_blog
+
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
+
     @title = "Blog Management"
 
     respond_to do |format|     
@@ -42,10 +44,14 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.blog = Blog.find(params[:blog_id])
 
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+      if @post.duplicate? or @blog.posts << @post
+        flash[:notice] = 'Post was successfully created.'
+        format.html { redirect_to blog_posts_url(:id => @post) }
+      elsif @post.save
+        format.html { redirect_to blog_posts_path, notice: 'Post was successfully created.' }
         format.xml  { head :created, :location => post_url(@post) }
         format.json { render :show, status: :created, location: @post }
       else
@@ -62,7 +68,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to blog_posts_path, notice: 'Post was successfully updated.' }
         format.xml  { head :ok }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -79,7 +85,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to blog_posts_path, notice: 'Post was successfully destroyed.' }
       format.xml  {head :ok }
       format.json { head :no_content }
     end

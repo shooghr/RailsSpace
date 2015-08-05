@@ -32,4 +32,15 @@ class ApplicationController < ActionController::Base
     request.post? and params[sym]
   end
 
+  def make_profile_vars
+    @user.spec ||= Spec.new
+    @spec = @user.spec
+
+    @user.faq ||= Faq.new
+    @faq = @user.faq
+
+    @user.blog ||= Blog.new
+    @blog = @user.blog
+  end
+
 end

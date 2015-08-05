@@ -28,4 +28,9 @@
 	<hr noshade />
 	Friends:
 	<%= render :partial => "friendship/friends" %>
+	
+	<% unless @blog.posts.empty? %>
+		<hr noshade />
+		Blog: <%= render :partial => "blog" %>
+	<% end %>
 </div>

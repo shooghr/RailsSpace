@@ -1,6 +1,11 @@
-<h1>Editing Post</h1>
+<h2><%= link_to 'Your Blog Posts', blog_posts_path %>: Edit Post</h2>
 
-<%= render 'form' %>
+<%= render :partial => "post", :locals => { :post => @post } %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<%= form_for(:post, :url => blog_post_path(:id => @post), :html => { :method => :put }) do |form| %>
+	<fieldset>
+		<legend>Edit Post</legend>
+		<%= render :partial => "form", :locals => { :form => form } %>
+		<%= submit_tag "Update", :class => "submit" %>
+	</fieldset>
+<% end %>

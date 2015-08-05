@@ -22,15 +22,7 @@ class UserController < ApplicationController
     @title = "RailsSpace User Hub"
     @user = User.find(session[:user_id])
 
-    @user.spec ||= Spec.new
-    @spec = @user.spec
-
-    @user.faq ||= Faq.new
-    @faq = @user.faq
-
-    @user.blog ||= Blog.new
-    @blog = @user.blog
-    
+    make_profile_vars
   end
 
   def register
