@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
 	has_one :spec
 	has_one :faq
+	has_one :blog
 
 	has_many :friendships
 	has_many :friends, ->{ where("status = 'accepted'").order(:screen_name) }, :through => :friendships

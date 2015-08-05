@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
 
+  resources :posts
+  
+  resources :blogs
+
+  resources :blogs do
+      resources :posts
+  end
+  
   get 'avatar/index'
 
   get 'avatar/upload'
