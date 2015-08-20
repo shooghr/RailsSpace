@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 	has_one :faq
 	has_one :blog
 
+	has_many :comments, ->{ order "created_at Desc" }, :dependent => :destroy
 	has_many :friendships
 	has_many :friends, ->{ where("status = 'accepted'").order(:screen_name) }, :through => :friendships
 	has_many :requested_friends, ->{ where("status = 'requested'").order(:created_at)}, :through => :friendships, :source => :friend

@@ -87,3 +87,13 @@ font-size: large;
 .post_actions {
 	float: right;
 }
+
+/* Comment Styles */
+.comment {
+	min-height: 90px;
+}
+.thumbnail {
+	display: block;
+	float: left;
+	margin-right: 1em;
+}

@@ -22,4 +22,15 @@
 		<% end %>
 
 	</div>
+
+	<div id="comments_for_post_<%= post.id %>">
+		<%= render :partial => "comments/comment", :collection => post.comments %>
+	</div>
+	<% if logged_in? %>
+		<div id="add_comment_link_for_post_<%= post.id %>">	
+			<%= link_to "Add a comment", new_blog_post_comment_path(post.blog, post), :remote => true, method: :get %>
+		</div>
+		<div id="new_comment_form_for_post_<%= post.id %>">
+		</div>
+	<% end %>
 </div>

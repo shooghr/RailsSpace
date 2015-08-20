@@ -1,0 +1,4 @@
+$('#add_comment_link_for_post_<%= @post.id %>').hide();
+
+$('#new_comment_form_for_post_<%= @post.id %>').show();
+$('#new_comment_form_for_post_<%= @post.id %>').html("<%= escape_javascript render(file: 'comments/_new.html.erb') %>")

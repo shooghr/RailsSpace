@@ -1,0 +1,5 @@
+$('#comments_for_post_<%= @post.id %>').html("<%= escape_javascript(render partial:'comments/comment', collection:@post.comments, :as => :comment) %> ");
+
+$('#add_comment_link_for_post_<%= @post.id %>').show();
+
+$('#new_comment_form_for_post_<%= @post.id %>').hide();

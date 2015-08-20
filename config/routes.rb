@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
 
 
+  resources :comments
+  
   resources :posts
   
   resources :blogs
 
   resources :blogs do
       resources :posts
+  end
+
+  resources :blogs do
+      resources :posts do
+          resources :comments
+      end
   end
   
   get 'avatar/index'
